@@ -4,14 +4,28 @@
 		<hr>
 		<p>{{ cpf | mascaraCpf | inverter }}</p>
 		<input type="text" :value="cpf | mascaraCpf">
+		<hr>
+		<Frutas />
+		<hr>
+		<ul>
+            <li v-for="fruta in frutas" :key="fruta">{{ fruta }}</li>
+        </ul>
+        <input type="text" v-model="fruta" @keydown.enter="add">
 	</div>
 </template>
 
 <script>
+import Frutas from './Frutas'
+
 export default {
+	components: {
+		Frutas
+	},
 	data(){
 		return{
-			cpf: '60070080090'
+			cpf: '60070080090',
+			fruta: '',
+            frutas: ['banana', 'maça', 'laranja']
 		}
 	},
 	filters: {
@@ -22,7 +36,13 @@ export default {
 			arr.splice(11,0,'-')
 			return arr.join('')
 		}
-	}
+	},
+    methods: {
+        add() {
+            this.frutas.push(this.fruta)
+            this.fruta = ''
+        }
+    }
 }
 </script>
 
