@@ -16,16 +16,16 @@
 
 <script>
 import Frutas from './Frutas'
+import frutaMixin from './frutaMixin'
 
 export default {
+	mixins: [frutaMixin],
 	components: {
 		Frutas
 	},
 	data(){
 		return{
 			cpf: '60070080090',
-			fruta: '',
-            frutas: ['banana', 'maça', 'laranja']
 		}
 	},
 	filters: {
@@ -37,12 +37,6 @@ export default {
 			return arr.join('')
 		}
 	},
-    methods: {
-        add() {
-            this.frutas.push(this.fruta)
-            this.fruta = ''
-        }
-    }
 }
 </script>
 
