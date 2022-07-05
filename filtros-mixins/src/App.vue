@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Filtros & Mixins</h1>
 		<hr>
-		<p>{{ cpf | mascaraCpf }}</p>
+		<p>{{ cpf | mascaraCpf | inverter }}</p>
 	</div>
 </template>
 
