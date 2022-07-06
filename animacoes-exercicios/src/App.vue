@@ -15,6 +15,15 @@
 		<transition name="fadeslide" appear>
 			<b-alert variant='info' show v-if="exibir">{{ msg }}</b-alert>
 		</transition>
+
+		<hr>
+		<b-select v-model="tipoAnimacao" class="mb-4">
+			<option value="fade">Fade</option>
+			<option value="slide">Slide</option>
+		</b-select>
+		<transition :name="tipoAnimacao" appear>
+			<b-alert variant='info' show v-if="exibir">{{ msg }}</b-alert>
+		</transition>
 	</div>
 </template>
 
@@ -24,7 +33,8 @@ export default {
 	data (){
 		return{
 			msg: 'Uma mensagem de informação para o usuario!',
-			exibir: true
+			exibir: true,
+			tipoAnimacao: 'fade'
 		}
 	}
 }
