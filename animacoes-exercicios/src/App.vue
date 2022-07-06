@@ -12,6 +12,9 @@
 			<b-alert variant='info' show v-if="exibir">{{ msg }}</b-alert>
 		</transition>
 		
+		<transition name="fadeslide">
+			<b-alert variant='info' show v-if="exibir">{{ msg }}</b-alert>
+		</transition>
 	</div>
 </template>
 
@@ -63,4 +66,29 @@ export default {
 .slide-leave-active {
 	animation: slide-out 2s ease;
 }
+
+@keyframes fadeslide-in {
+	from { transform: translateY(60px); }
+	to { transform: translateY(0); }
+}
+
+@keyframes fadeslide-out {
+	from { transform: translateY(0); }
+	to { transform: translateY(60px); }
+}
+
+.fadeslide-enter-active {
+	animation: slide-in 2s ease;
+	transition: opacity 2s;
+}
+
+.fadeslide-leave-active {
+	animation: slide-out 2s ease;
+	transition: opacity 2s;
+}
+
+.fadeslide-enter, .fadeslide-leave-to {
+	opacity: 0;
+}
+
 </style>
