@@ -34,27 +34,11 @@ export default {
 	font-size: 1.5rem;
 }
 
-.fade-enter{
+.fade-enter, .fade-leave-to {
 	opacity: 0;
 }
 
-.fade-enter-active{
+.fade-enter-active, .fade-leave-active{
 	transition: opacity 2s;
-}
-
-.fade-enter-to{
-	opacity: 1; /*Isso é padrao, caso nao queria colocar vai funcionar normalmente*/
-}
-
-.fade-leave {
-	opacity: 1; /*Isso é padrao, caso nao queria colocar vai funcionar normalmente*/
-}
-
-.fade-leave-active{
-	transition: opacity 2s;
-}
-
-.fade-leave-to {
-	opacity: 0;
 }
 </style>
