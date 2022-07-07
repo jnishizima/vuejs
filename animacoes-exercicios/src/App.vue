@@ -24,7 +24,24 @@
 		<transition :name="tipoAnimacao" appear mode="out-in">
 			<b-alert variant='info' show v-if="exibir" key="info">{{ msg }}</b-alert>
 			<b-alert variant='warning' show v-else key="warn">{{ msg }}</b-alert>
+		</transition> 
+
+		<hr>
+		<button @click="exibir2 = !exibir2">Mostrar</button> 
+		<transition
+			@before-enter="beforeEnter"
+			@enter="enter"
+			@after-enter="afterEnter"
+			@enter-cancelled="enterCancelled"
+
+			@before-leave="beforeLeave"
+			@leave="leave"
+			@after-leave="afterLeave"
+			@leave-cancelled="leaveCancelled">
+			<div v-if="exibir2" class="caixa"></div>
 		</transition>
+
+
 	</div>
 </template>
 
@@ -35,9 +52,39 @@ export default {
 		return{
 			msg: 'Uma mensagem de informação para o usuario!',
 			exibir: true,
-			tipoAnimacao: 'fade'
+			tipoAnimacao: 'fade',
+			exibir2: true
+		}
+	},
+	methods: {
+		beforeEnter(el){
+			console.log('beforeEnter')
+		},
+		enter(el, done){
+			console.log('enter')
+			done()
+		},
+		afterEnter(el){
+			console.log('afterEnter')
+		},
+		enterCancelled(){
+			console.log('enterCancelled')
+		},
+		beforeLeave(el){
+			console.log('beforeLeave')
+		},
+		leave(el, done){
+			console.log('leave')
+			done()
+		},
+		afterLeave(el){
+			console.log('afterLeave')
+		},
+		leaveCancelled(){
+			console.log('leaveCancelled')
 		}
 	}
+	
 }
 </script>
 
@@ -50,6 +97,13 @@ export default {
 	color: #2c3e50;
 	margin-top: 60px;
 	font-size: 1.5rem;
+}
+
+.caixa {
+	height: 100px;
+	width: 300px;
+	margin: 30px auto;
+	background-color: lightblue;
 }
 
 .fade-enter, .fade-leave-to {
