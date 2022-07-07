@@ -27,18 +27,13 @@
 		</transition> 
 
 		<hr>
-		<button @click="exibir2 = !exibir2">Mostrar</button> 
+		<button @click="exibir2 = !exibir2">Altenar</button> 
 		<transition
-			:css="false"
+			
 			@before-enter="beforeEnter"
 			@enter="enter"
-			@after-enter="afterEnter"
-			@enter-cancelled="enterCancelled"
-
 			@before-leave="beforeLeave"
-			@leave="leave"
-			@after-leave="afterLeave"
-			@leave-cancelled="leaveCancelled">
+			@leave="leave">
 			<div v-if="exibir2" class="caixa"></div>
 		</transition>
 
@@ -54,36 +49,39 @@ export default {
 			msg: 'Uma mensagem de informação para o usuario!',
 			exibir: true,
 			tipoAnimacao: 'fade',
-			exibir2: true
+			exibir2: true,
+			larguraBase: 0
 		}
 	},
 	methods: {
+		animar(el, done, negativo){
+			let rodada = 1 
+			const temporizador = setInterval(() => {
+				const novaLargura = this.larguraBase + 
+					(negativo ? -rodada * 10 : rodada * 10)
+				el.style.width = `${novaLargura}px`
+				rodada ++
+				console.log(novaLargura)
+				if (rodada > 30){
+					clearInterval(temporizador)
+				}
+				done()
+			}, 20)
+		},
 		beforeEnter(el){
-			console.log('beforeEnter')
+			this.larguraBase = 0
+			el.style.width = `${this.larguraBase}px`
 		},
 		enter(el, done){
-			console.log('enter')
-			done()
-		},
-		afterEnter(el){
-			console.log('afterEnter')
-		},
-		enterCancelled(){
-			console.log('enterCancelled')
+			this.animar(el, done, false)
 		},
 		beforeLeave(el){
-			console.log('beforeLeave')
+			this.larguraBase = 300
+			el.style.width = `${this.larguraBase}px`
 		},
 		leave(el, done){
-			console.log('leave')
-			done()
+			this.animar(el, done, true)
 		},
-		afterLeave(el){
-			console.log('afterLeave')
-		},
-		leaveCancelled(){
-			console.log('leaveCancelled')
-		}
 	}
 	
 }
