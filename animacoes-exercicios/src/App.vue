@@ -37,7 +37,15 @@
 			<div v-if="exibir2" class="caixa"></div>
 		</transition>
 
-
+		<hr>
+		<b-button @click="adicionarAlunos" class="mb-4">
+			Adicionar Aluno
+		</b-button>
+		<b-list-group v-for="(aluno, index) in alunos" :key='aluno'>
+			<b-list-group-item @click="removerAluno(index)">
+				{{ aluno }}
+			</b-list-group-item>
+		</b-list-group>
 	</div>
 </template>
 
@@ -46,6 +54,7 @@
 export default {
 	data (){
 		return{
+			alunos: ['Roberto', 'Julia', 'Teresa', 'Paulo'],
 			msg: 'Uma mensagem de informação para o usuario!',
 			exibir: true,
 			tipoAnimacao: 'fade',
@@ -54,6 +63,13 @@ export default {
 		}
 	},
 	methods: {
+		adicionarAlunos(){
+			const s = Math.random().toString(36).substring(2)
+			this.alunos.push(s)
+		},
+		removerAluno(index){
+			this.alunos.splice(index, 1)
+		},
 		animar(el, done, negativo){
 			let rodada = 1 
 			const temporizador = setInterval(() => {
@@ -61,7 +77,6 @@ export default {
 					(negativo ? -rodada * 10 : rodada * 10)
 				el.style.width = `${novaLargura}px`
 				rodada ++
-				console.log(novaLargura)
 				if (rodada > 30){
 					clearInterval(temporizador)
 				}
