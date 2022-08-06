@@ -3,14 +3,19 @@
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
         <p>Nome é {{ nome }}</p>
+        <p>Idade do Usuario: <strong>{{ idade }}</strong></p>
         <button @click="alterarNome">Alterar Nome</button>
         <hr>
         <div class="componentes">
-            <app-usuario-info :nome="nome" 
+            <app-usuario-info 
+                :nome="nome" 
+                :idade="idade"
                 @nomeMudou="nome = $event"
                 :reiniciarFn="reiniciarNome"
             />
-            <app-usuario-editar />
+            <app-usuario-editar 
+                :idade="idade"
+            />
         </div>
     </div>
 </template>
@@ -23,7 +28,8 @@ export default {
     components: { AppUsuarioInfo, AppUsuarioEditar },
     data(){
         return {
-            nome: 'Jose'
+            nome: 'Jose',
+            idade: 21
         }
     },
     methods: {
