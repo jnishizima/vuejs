@@ -33,7 +33,7 @@ export default {
         }
     },
     created() {
-        barramentos.$on('idadeMudou', idade => {
+        barramentos.onIdadeMudar(idade => {
             this.idade = idade
         })
     }
