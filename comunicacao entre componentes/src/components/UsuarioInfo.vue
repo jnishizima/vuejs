@@ -3,6 +3,7 @@
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
         <p>Nome do Usuario: <strong>{{ nome }}</strong></p>
+        <p>Manipulando o nome invertido: <strong>{{ inverterNome() }}</strong></p>
     </div>
 </template>
 
@@ -10,7 +11,12 @@
 export default {
     props:[
         'nome'
-    ]
+    ],
+    methods: {
+        inverterNome() {
+            return this.nome.split('').reverse().join('')
+        }
+    }
 }
 </script>
 
