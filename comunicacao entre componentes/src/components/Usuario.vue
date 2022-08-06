@@ -21,7 +21,13 @@ export default {
         return {
             nome: 'Jose'
         }
+    },
+    methods: {
+        alterarNome(){
+            this.nome = 'Ana'
+        }
     }
+
 }
 </script>
 
