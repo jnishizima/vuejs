@@ -5,6 +5,7 @@
         <p>Nome do Usuario: <strong>{{ nome }}</strong></p>
         <p>Manipulando o nome invertido: <strong>{{ inverterNome() }}</strong></p>
         <button @click="reiniciarNome">Reiniciar Nome</button>
+        <button @click="reiniciarFn">Reiniciar Nome (CallBack)</button>
     </div>
 </template>
 
@@ -15,7 +16,8 @@ export default {
             type: String,
             //default: 'Anonimo',
             required: true
-        }
+        },
+        reiniciarFn: Function
     },
     methods: {
         inverterNome() {
